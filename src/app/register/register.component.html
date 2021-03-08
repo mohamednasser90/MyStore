@@ -1,0 +1,63 @@
+<div class="uk-position-center uk-overlay uk-overlay-default">
+    <form #f="ngForm" (ngSubmit)="register(f)">
+    
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                <input class="uk-input" type="text" name="fname" #fname="ngModel" ngModel required >
+                <p class="alert alert-danger" *ngIf="fname.errors?.required&&fname.touched" role="alert">
+                    this fname input is req
+                   </p>
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+               
+                <textarea class="uk-input" cols="27" type="text" name="bio" #bio="ngModel" ngModel required></textarea>
+                <p class="alert alert-danger" *ngIf="bio.errors?.required&&bio.touched" role="alert">
+                   this bio input is req
+                  </p>
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                <input class="uk-input" type="text" name="email" #email="ngModel" ngModel email>
+                <P class="alert alert-danger" *ngIf="email.errors?.required&&email.touched" role="alert">
+                    this email input is req and must be email
+                   </P>
+                   <P class="alert alert-danger" *ngIf="email.errors?.email&&email.touched" role="alert">
+                    this email input is req and must be email
+                   </P>
+            </div>
+        </div>
+    
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                <input class="uk-input" type="text" name="password" #password="ngModel" ngModel required minLength="8">
+                <P class="alert alert-danger" *ngIf="password.errors?.required&&password.touched" role="alert">
+                    this password input is req and must be req
+                   </P>
+                   <P class="alert alert-danger" *ngIf="password.errors?.minlength&&password.touched" role="alert">
+                    this password input is req and must be 8
+                   </P>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                <input class="uk-input" type="text" name="confirmpassword" #confirmpassword="ngModel" ngModel required minLength="8">
+                <P class="alert alert-danger" *ngIf="confirmpassword.errors?.required&&password.errors?.minlength &&confirmpassword.touched" role="alert">
+                    this password input is req and must be req
+                   </P>
+                   <P class="alert alert-danger" *ngIf="password.value!== confirmpassword.value&&password.touched" role="alert">
+                    this password input is req and must be 8
+                   </P>
+            </div>
+        </div>
+         <button type="submit" class="btn btn-success" [disabled]="f.invalid">Register</button>
+    
+    </form></div>
