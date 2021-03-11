@@ -8,8 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+isUser:boolean=false;
+  constructor(private auth:AuthService,private router:Router) { 
+this.auth.user.subscribe(user=>{
+  if(user)
+  {
+    this.isUser=true;
+  }
+  else{
+    this.isUser=false;
+  }
+})
 
-  constructor(private auth:AuthService,private router:Router) { }
+  }
 
   ngOnInit(): void {
   }
@@ -17,6 +28,7 @@ export class NavbarComponent implements OnInit {
   {
       this.auth.Logout().then(()=>{
 console.log('Signout Success');
+localStorage.removeItem("userConnect")
 this.router.navigate(['/login']);
 
       }).catch(()=>{

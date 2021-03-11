@@ -17,6 +17,7 @@ import { MyproductsComponent } from './myproducts/myproducts.component';
  import {AngularFireAuthModule} from '@angular/fire/auth';
  import {AngularFireStorageModule} from '@angular/fire/storage';
 import { FormsModule } from '@angular/forms';
+import { ProductDetailsComponent } from './product-details/product-details.component';
  
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent,
     ProfileComponent,
     ProductsComponent,
-    MyproductsComponent
+    MyproductsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

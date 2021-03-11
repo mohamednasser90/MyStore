@@ -10,9 +10,15 @@ errorMessage:string=""
     ngOnInit(): void {}
     login(f : any) {
         let data = f.value;
-        this.auth.SignIn(data.email, data.password).then(() => {
+        this.auth.SignIn(data.email, data.password).then((user) => {
             console.log("Login Success");
            this.router.navigate(['/']);
+          // localStorage.setItem("userConnect",user.user?.uid )
+           let Uid:string|undefined=user.user?.uid
+            if(Uid)
+            {
+                localStorage.setItem("userConnect",Uid)
+            }
         }).catch(() => {
             console.log("Login Failed");
             this.errorMessage="Incorrect email & password"

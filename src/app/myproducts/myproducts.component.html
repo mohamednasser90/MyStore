@@ -1,50 +1,72 @@
 <div class="container">
     <br>
-        <div class="row">
-    <div class="col col-lg-3 col-md-6 col-sm-12">
-    
-        <div class="card" style="width: 18rem;">
-            <img src="https://th.bing.com/th/id/OIP.Qw_qyBBjiidcbGN80YAlFAHaHu?w=165&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+    <div class="row">
+        <div class="col-12">
+         <p style="text-align:center">  My Products   </p>   
         </div>
     </div>
-    <div class="col col-lg-3 col-md-6 col-sm-12">
-    
-        <div class="card" style="width: 18rem;">
-            <img src="https://th.bing.com/th/id/OIP.Qw_qyBBjiidcbGN80YAlFAHaHu?w=165&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Add Product
+              </button> 
         </div>
     </div>
-    <div class="col col-lg-3 col-md-6 col-sm-12">
-    
-        <div class="card" style="width: 18rem;">
-            <img src="https://th.bing.com/th/id/OIP.Qw_qyBBjiidcbGN80YAlFAHaHu?w=165&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" alt="...">
+        <div class="row" *ngFor="let item of dataArray">
+  
+      <div class="col col-lg-3 col-md-6 col-sm-12" >
+        <div class="card" style="width: 18rem;" *ngIf="Uid===item.uid">
+            <img [src]="item.image" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">{{item.title}}</h5>
+                <p class="card-text">{{item.description}}</p>{{item.id}}
+               <button class="btn btn-danger" (click)="delete(item.id)">Delete</button>  
             </div>
         </div>
+      
     </div>
-    <div class="col col-lg-3 col-md-6 col-sm-12">
     
-        <div class="card" style="width: 18rem;">
-            <img src="https://th.bing.com/th/id/OIP.Qw_qyBBjiidcbGN80YAlFAHaHu?w=165&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+    
+    
+    </div>
+    </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+            <form #f="ngForm" (ngSubmit)="addproduct(f)"  >
+                <div class="form-group">
+                  <label for="title">Title </label>
+                  <input type="text" class="form-control"  placeholder="Title" name="title" #title="ngModel" ngModel>
+                </div>
+                <div class="form-group">
+                  <label for="description">Description </label>
+                  <textarea type="text" class="form-control" rows=6  placeholder="Description" name="description" #description="ngModel" ngModel></textarea>  
+                </div>
+                <div class="form-group">
+                    <label for="image">Image Link </label>
+                    <input type="text" class="form-control"  placeholder="Image Link" name="image" #image="ngModel" ngModel>
+                  </div>
+
+                  <div class="alert alert-success" *ngIf="successMesssage">
+                    <p>{{successMesssage}}</p>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                  </div>
+              </form>
+        </div>
+       
+      </div>
     </div>
-    
-    </div>
-    </div>
+  </div>
